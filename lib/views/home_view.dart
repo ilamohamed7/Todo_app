@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:todoapp/widgets/notes_item_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -11,6 +14,57 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      CustomTextFild(
+                        hintText: 'Title',
+                      ),
+                      SizedBox(height: 10),
+                      CustomTextFild(
+                        hintText: 'Content',
+                        maxLines: 5,
+                      ),
+                      Spacer(),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: Colors.cyan,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text('Add',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            child: CircleAvatar(
+              radius: 35,
+              backgroundColor: Colors.blue,
+              child: Icon(
+                Icons.add,
+                size: 36,
+                color: Colors.black,
+              ),
+            ),
+          )),
       appBar: AppBar(
         title: Text(
           'Notes',
@@ -39,84 +93,64 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 230,
-              decoration: BoxDecoration(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              NotesItemWidget(
                 color: Colors.amber.shade300,
-                borderRadius: BorderRadius.circular(10),
+                titel: 'Studey Flutter',
+                desg: 'Build your career with Tharwat Samy',
+                dateTime: 'May 21,2024',
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 30),
-                          Text(
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            'Studey flutter',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            'Build your career with Tharwat Samy',
-                            style: TextStyle(
-                              color: Colors.grey.shade800,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 20,
-                      horizontal: 20,
-                    ),
-                    child: Column(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.delete,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          'May 21,2024',
-                          style: TextStyle(
-                            color: Colors.grey.shade800,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              NotesItemWidget(
+                color: Colors.blue.shade300,
+                titel: 'Studey Flutter',
+                desg: 'Build your career with Tharwat Samy',
+                dateTime: 'May 21,2024',
               ),
-            ),
-          ],
+              NotesItemWidget(
+                color: Colors.brown.shade300,
+                titel: 'Studey Flutter',
+                desg: 'Build your career with Tharwat Samy',
+                dateTime: 'May 21,2024',
+              ),
+              NotesItemWidget(
+                color: Colors.greenAccent,
+                titel: 'Studey Flutter',
+                desg: 'Build your career with Tharwat Samy',
+                dateTime: 'May 21,2024',
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class CustomTextFild extends StatelessWidget {
+  const CustomTextFild({
+    super.key,
+    this.hintText,
+    this.maxLines = 1,
+  });
+  final String? hintText;
+  final int? maxLines;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        // hintText: hintText,
+        label: Text(
+          hintText ?? '',
+          style: TextStyle(
+            color: Colors.cyan,
+          ),
+        ),
+        hintStyle: TextStyle(),
+        border: OutlineInputBorder(),
       ),
     );
   }
