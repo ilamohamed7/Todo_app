@@ -37,6 +37,87 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 230,
+              decoration: BoxDecoration(
+                color: Colors.amber.shade300,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 30),
+                          Text(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            'Studey flutter',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            'Build your career with Tharwat Samy',
+                            style: TextStyle(
+                              color: Colors.grey.shade800,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          'May 21,2024',
+                          style: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontSize: 18,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
